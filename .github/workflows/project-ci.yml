@@ -42,6 +42,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install coverage
           ls
-          coverage run ml_project/tests/tests.py
+          coverage run tests/tests.py
       - name: Coverage report
         run: coverage report
