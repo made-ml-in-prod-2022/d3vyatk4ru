@@ -43,7 +43,7 @@ def drop_target(df_heart: pd.DataFrame,
                 params,
                 ) -> pd.DataFrame:
     """ Delete target column from pf.DataFrame """
-    return df_heart.drop(columns=[params.target_col])
+    return df_heart.drop(columns=[params.target_col], axis=1)
 
 
 def build_feature_transformer(params) -> ColumnTransformer:

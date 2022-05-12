@@ -2,10 +2,11 @@
 
 import logging
 from typing import NoReturn
+from copy import deepcopy
 
 import pandas as pd
 from sklearn.preprocessing import (
-    StandardScaler,
+    MinMaxScaler,
 )
 
 from sklearn.base import (
@@ -23,8 +24,9 @@ class CustomTransformer(BaseEstimator, TransformerMixin):
     """ Custom transformer class """
     def __init__(self, features) -> NoReturn:
         """ Class ctor """
-        self.transform_numerical = StandardScaler()
+        self.transform_numerical = MinMaxScaler()
         self.numerical_features = features.numerical_features
+        self.fitted = False
 
     def fit(
         self,
@@ -34,8 +36,15 @@ class CustomTransformer(BaseEstimator, TransformerMixin):
         self.transform_numerical.fit(data[self.numerical_features])
         return self
 
+    def is_fitted(self):
+        """ Check fit transformer """
+        if not self.fitted:
+            raise Exception('CustomTransformer not fitted!')
+
     def transform(self,
         data: pd.DataFrame,
         ):
         """ Transform numerical feature """
-        return self.transform_numerical.transform(data[self.numerical_features])
+        self.is_fitted()
+        copy_data = deepcopy(data[self.numerical_features])
+        return self.transform_numerical.transform(copy_data)

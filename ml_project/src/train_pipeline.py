@@ -9,28 +9,28 @@ import sys
 import click
 import pandas as pd
 
-from entity.train_pipeline_params import (
+from src.entity.train_pipeline_params import (
     TrainingPipelineParams,
     read_training_pipeline_params,
 )
 
-from data.make_dataset import (
+from src.data.make_dataset import (
     read_dataset,
     split_train_val_data,
 )
 
-from features.make_features import (
+from src.features.make_features import (
     extract_target,
     drop_target,
     build_feature_transformer,
     make_features,
 )
 
-from features.custom_transformer import (
+from src.features.custom_transformer import (
     CustomTransformer,
 )
 
-from models.model_fit_predict import (
+from src.models.model_fit_predict import (
     train_model,
     predict_model,
     evaluate_model,
