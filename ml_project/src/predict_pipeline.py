@@ -9,21 +9,21 @@ import click
 import pandas as pd
 from pandas import DataFrame
 
-from entity.predict_pipeline_params import (
+from src.entity.predict_pipeline_params import (
     PredictPipelineParams,
     read_predict_pipeline_params,
 )
 
-from data.make_dataset import (
+from src.data.make_dataset import (
     read_dataset,
 )
 
-from features.make_features import (
+from src.features.make_features import (
     drop_target,
     make_features,
 )
 
-from models.model_fit_predict import (
+from src.models.model_fit_predict import (
     predict_model,
     load_model,
     load_transformer,
