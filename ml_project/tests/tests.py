@@ -151,11 +151,11 @@ class TestProject(unittest.TestCase):
 
 
     def test_train_pipeline_log_reg(self):
-        train_pipeline(os.path.abspath('ml_project/configs/train_config_log_reg.yaml'))
+        train_pipeline(os.path.abspath('configs/train_config_log_reg.yaml'))
 
     def test_test_pipeline_log_reg(self):
-        train_pipeline(os.path.abspath('ml_project/configs/train_config_log_reg.yaml'))
-        predict_pipeline(os.path.abspath('ml_project/configs/predict_config.yaml'))
+        train_pipeline(os.path.abspath('configs/train_config_log_reg.yaml'))
+        predict_pipeline(os.path.abspath('configs/predict_config.yaml'))
 
 
 if __name__ == '__main__':

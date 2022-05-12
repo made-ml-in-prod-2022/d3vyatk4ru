@@ -34,6 +34,7 @@ class CustomTransformer(BaseEstimator, TransformerMixin):
         ) -> pd.DataFrame:
         """ Fitting transformer for numerical features"""
         self.transform_numerical.fit(data[self.numerical_features])
+        self.fitted = True
         return self
 
     def is_fitted(self):
