@@ -152,12 +152,34 @@ class TestProject(unittest.TestCase):
     def test_train_pipeline_log_reg(self):
         train_pipeline(os.path.abspath('configs/train_config_log_reg.yaml'))
         self.assertTrue(os.path.exists(os.path.abspath('models/log_reg.pkl')))
-        self.assertTrue(os.path.exists(os.path.abspath('metrics_train_log_reg.json')))
+
+        metrics_path = os.path.abspath('models/metrics_train_log_reg.json')
+
+        self.assertTrue(os.path.exists(metrics_path))
+
+        with open(metrics_path, 'r', encoding='utf-8') as json_file:
+            metrics = json.load(json_file)
+
+        self.assertTrue(np.isclose(metrics['acc'], 0.833, atol=metrics['acc'] * 0.05))
+        self.assertTrue(np.isclose(metrics['f1'], 0.833, atol=metrics['f1'] * 0.05))
+        self.assertTrue(np.isclose(metrics['roc_auc'], 0.833, atol=metrics['roc_auc'] * 0.05))
+
+
 
     def test_test_pipeline_log_reg(self):
         train_pipeline(os.path.abspath('configs/train_config_log_reg.yaml'))
         self.assertTrue(os.path.exists(os.path.abspath('models/log_reg.pkl')))
-        self.assertTrue(os.path.exists(os.path.abspath('metrics_train_log_reg.json')))
+        self.assertTrue(os.path.exists(os.path.abspath('models/metrics_train_log_reg.json')))
+
+        metrics_path = os.path.abspath('models/metrics_train_log_reg.json')
+
+        with open(metrics_path, 'r', encoding='utf-8') as json_file:
+            metrics = json.load(json_file)
+
+        self.assertTrue(np.isclose(metrics['acc'], 0.833, atol=metrics['acc'] * 0.05))
+        self.assertTrue(np.isclose(metrics['f1'], 0.833, atol=metrics['f1'] * 0.05))
+        self.assertTrue(np.isclose(metrics['roc_auc'], 0.833, atol=metrics['roc_auc'] * 0.05))
+
         predict_pipeline(os.path.abspath('configs/predict_config.yaml'))
         self.assertTrue(os.path.exists(os.path.abspath('data/predicted/predict.csv')))
 
