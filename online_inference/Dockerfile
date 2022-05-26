@@ -6,12 +6,12 @@ ENV PATH_TO_MODEL="models/log_reg.pkl"
 
 COPY requirements.txt\
      app.py\
-     init.sh ./
+     envinit.sh ./
 
 COPY src /src
 COPY  models ./models
 
-RUN ./init.sh
+RUN ./envinit.sh
 
 WORKDIR .
 
