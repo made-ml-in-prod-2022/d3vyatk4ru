@@ -8,7 +8,7 @@ COPY requirements.txt\
      app.py\
      envinit.sh ./
 
-COPY src /src
+COPY src ./src
 COPY  models ./models
 
 RUN ./envinit.sh
